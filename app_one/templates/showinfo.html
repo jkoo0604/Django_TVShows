@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Info: {{ one_show.title }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- <link rel="stylesheet" href="/Users/jayoung/Desktop/Dojo_Assignments/Python/Django/Full_Stack/TV_Shows/app_one/static/css/style.css"> -->
+</head>
+<body>
+    <div class="container">
+        <div class="topline">
+            <h3 class="title">TV Show {{ one_show.id }}</h3>
+            <p class="navlink"><a href="/shows">Go Back</a></p>
+        </div>
+        <div class="mainview">
+            {% load tz %}
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Title</td>
+                        <td>{{ one_show.title }}</td>
+                    </tr>
+                    <tr>
+                        <td>Network</td>
+                        <td>{{ one_show.network }}</td>
+                    </tr>
+                    <tr>
+                        <td>Release Date</td>
+                        <td>{{ one_show.release_date|date:'F j, Y' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>{{ one_show.desc }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="updated">Last Updated: {{ one_show.updated_at|timezone:"US/Pacific"|date:'F j, Y h:i A' }} PST</p>
+            <!-- {% localtime on %}
+            <p>Last Updated: {{ one_show.updated_at|localtime|date:'F j, Y h:i A' }}</p>
+            {% endlocaltime %} -->
+            <p><a href="/shows/{{one_show.id}}/edit">Edit</a> | <a href="/shows/{{one_show.id}}/delete">Delete</a></p>
+        </div>
+    </div>
+</body>
+</html>

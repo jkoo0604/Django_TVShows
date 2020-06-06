@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Shows</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- <link rel="stylesheet" href="/Users/jayoung/Desktop/Dojo_Assignments/Python/Django/Full_Stack/TV_Shows/app_one/static/css/style.css"> -->
+</head>
+<body>
+    <div class="container">
+        <h3 class="title">All Shows</h3>
+        <table class="table table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Network</th>
+                    <th scope="col">Release Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for show in all_shows %}
+                <tr>
+                    <td><a href="shows/{{show.id}}">{{ show.id }}</a></td>
+                    <td>{{ show.title }}</td>
+                    <td>{{ show.network }}</td>
+                    <td>{{ show.release_date|date:'F j, Y' }}</td>
+                    <td>
+                        <a href="shows/{{show.id}}">Show</a> | 
+                        <a href="shows/{{show.id}}/edit">Edit</a> | 
+                        <a href="shows/{{show.id}}/delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="shows/new">Add a New Show</a>
+    </div>
+</body>
+</html>
